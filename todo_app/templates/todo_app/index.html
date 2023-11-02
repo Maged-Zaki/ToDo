@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_files %} 
+    <link rel="stylesheet" href="{% static 'todo_app/css/index.css' %}">
+{% endblock %}
+
+{% block title %}ToDo {% endblock %}
+
+
+
+{% block body %}
+
+        <main>
+            <div class="container">
+                <h1 >Django <span>T</span>o<span>D</span>o application </h1>
+                <div class="app-gif">
+                    <img src="{% static 'todo_app/images/index.gif' %}" alt="">
+                </div>
+            </div>
+        </main>
+        
+    
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block static_files %} 
+    <link rel="stylesheet" href="{% static 'todo_app/css/index.css' %}">
+{% endblock %}
+
+{% block title %}My Tasks {% endblock %}
+
+
+
+{% block body %}
+
+
+        <main >
+
+            <div class="form-div" id="form-div" {% if task_form.errors %} style="position: absolute;" {% endif %}>
+                <form action="{% url 'tasks_view' %}" method="post" id="form" {% if task_form.errors %} style="display: block;" {% endif %}>
+                    {% csrf_token %}
+    
+                    {% for field in task_form %}
+                        <div class="form-control {% if field.errors %}error {% endif %}">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                    <div class="submit-btn-div">
+                        <button type="submit" name="task_submit" class="add-task-btn">Create Task</button>
+                        <a class="add-task-btn" id="cancel-task-btn" onclick=cancel()>Cancel</a>
+                    </div>
+    
+                </form>
+            </div>
+
+            <div class="form-div" id="group-form-div" {% if group_form.errors %} style="position: absolute;" {% endif %}>
+                <form action="{% url 'tasks_view' %}" method="post" id="group_form" {% if group_form.errors %} style="display: block;" {% endif %}>
+                    {% csrf_token %}
+    
+                    {% for field in group_form %}
+                        <div class="form-control {% if field.errors %}error {% endif %}">
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                    <div class="submit-btn-div">
+                        <button type="submit" name="group_submit" class="add-task-btn">Get Tasks</button>
+                        <a class="add-task-btn" id="cancel-task-btn" onclick=cancel_group_form()>Cancel</a>
+                    </div>
+    
+                </form>
+            </div>
+
+            {% if current_tasks %}
+            <button class="add-task-btn" id="add-task-btn">Add more Tasks</button>
+            <button class="add-task-btn " id="group-task-btn">Group tasks</button>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Task</td>
+                        <td>Finish by</td>
+                        <td>Control</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for task in current_tasks %}
+                        <tr class="{% if task.date_reached %} date-reached {% endif %}" id="{{task.id}}">
+                            <td>{{ task.content }}</td>
+                            <td>{{ task.finish_time }}</td>
+                            <td>
+                                <a href="{% url 'delete_task' task.id %}" id="delete-btn">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% if grouped_tasks == True %}
+                <a class="add-task-btn" id="show-all_tasks-btn" href="{% url 'tasks_view' %}">Show all tasks</a>
+                {% endif %}
+                
+            {% elif grouped_tasks == False %}
+                <h1>No tasks for the date submitted</h1>
+                <button class="add-task-btn" id="add-task-btn">Add Task</button>
+                <a class="add-task-btn" id="show-all_tasks-btn" href="{% url 'tasks_view' %}">Show all tasks</a>
+            {% else %}
+            <h1>No tasks</h1>
+            <button class="add-task-btn" id="add-task-btn">Add Task</button>
+            {% endif %}
+        </main>
+        
+        <script src="{% static 'todo_app/js/index.js' %}"></script>
+        
+{% endblock %}

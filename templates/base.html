@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'todo_app/css/base.css' %}">
+    {% block static_files %} {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{% static 'todo_app/images/todo-icon.ico' %}">
+    <title> {% block title %} {% endblock %} </title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <a href="/">
+                <img src="{% static 'todo_app/images/logo.jpg' %}" alt="ToDo_Logo">
+            </a>
+        </div>
+        {% if not user.is_authenticated %}
+        <div class="nav-right-btns">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'sign_up' %}">Sign up</a>
+        </div>
+        {% else %}
+        <div class="nav-right-btns">
+            <p id="user-logged">Signed in as: <strong>{{ user.username }}</strong></p>
+            <a href="{% url 'tasks_view' %}">My Tasks</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+        {% endif %}
+    </nav>
+
+
+    {% block body %}
+    
+    {% endblock %}
+
+
+    <footer>
+        <div class="footer-rights">
+            All rights reserverd ToDo © 2023 
+        </div>
+    </footer>
+
+</body>
+</html>

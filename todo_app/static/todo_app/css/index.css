@@ -1,0 +1,179 @@
+
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 20%;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+h1 {
+    color: #5271ff;
+}
+
+h1 span {
+    color: #38b6ff;
+}
+
+
+.add-task-btn {
+    background-color: #1877f2;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: medium;
+    color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.add-task-btn:hover {
+    background-color: #4c91eb;
+    cursor: pointer;
+}
+
+
+.form-div {
+    position: relative;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 50%;
+}
+
+form {
+    display: none;
+    box-shadow: 0 0 14px 6px #b7b3b3;
+    border-radius: 10px;
+    padding: 1rem;
+    padding-right: 1.5rem;
+    width: 300px;
+    background-color: #eee;
+    position: absolute;
+    margin-top: 10rem;
+    z-index: 1;
+}
+
+.submit-btn-div {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#cancel-task-btn {
+    background-color: rgb(236, 86, 86);
+}
+
+.form-control {
+    padding: 1rem;
+
+}
+
+.form-control label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.25rem;
+
+}
+
+.form-control input {
+    width: 100%;
+    height: 20px;
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 10px ;
+    border: 1px solid #ccc;
+
+    
+}
+
+.error input {
+    background-color: #ffe6e7;
+}
+
+
+.errorlist {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    color: #d6000b;
+}
+
+
+table {
+    border-collapse: collapse;
+    
+}
+
+
+table td {
+    border: 2px solid lightgrey;
+    padding: 1.5rem;
+    
+    
+}
+
+thead {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+tbody td {
+    background-color: #eee;
+
+}
+
+tbody tr {
+    position: relative;
+}
+
+.date-reached::after {
+    content: "";
+    width: 74%;
+    height: 3px;
+    background-color: black;
+    position: absolute;
+    top: 46%;
+    left: 0;
+
+
+}
+
+.date-reached-js::after {
+    content: "";
+    width: 74%;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    top: 46%;
+    left: 0;
+}
+
+
+#delete-btn {
+    text-decoration: none;
+    background-color: #03a9f4;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+#show-all_tasks-btn {
+    text-decoration: none ;
+}

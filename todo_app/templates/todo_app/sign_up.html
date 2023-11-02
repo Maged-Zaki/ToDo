@@ -1,0 +1,31 @@
+{% extends "base-login.html" %}
+{% load static %}
+
+{% block title %}Sign up {% endblock %}
+
+
+
+
+
+{% block body %} 
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-logo">
+            <a href="/" >
+                <img src="{% static 'todo_app/images/logo.jpg' %}" alt="">
+            </a>
+        </div>
+        {% for field in form %}
+            <div class="form-control {% if field.errors %}error {% endif %}">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="submit-btn-div">
+            <button type="submit">Create Account </button>
+        </div>
+    </form>
+
+{% endblock %}
